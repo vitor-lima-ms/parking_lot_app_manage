@@ -1,2 +1,4 @@
 
 /venv
+project/parking_lot/settings.py
+*.pyc
