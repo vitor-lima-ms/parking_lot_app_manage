@@ -1,18 +1,18 @@
 from django.shortcuts import render
 from django.views.generic.edit import FormView
-from .forms import CarForm
-from .models import Car, CarSpace
+from .forms import AutomobileForm
+from .models import Automobile, AutomobileSpace
 
 # Create your views here.
 
-class CarFormView(FormView):
-    template_name = 'car_form.html'
-    form_class = CarForm
+class AutomobileFormView(FormView):
+    template_name = 'automobile_form.html'
+    form_class = AutomobileForm
 
-def car_register(request):
-    form = CarForm(request.POST)
+def automobile_register(request):
+    form = AutomobileForm(request.POST)
 
     if form.is_valid():
-        car = form.save()
+        automobile = form.save()
     
-    return render(request, 'car_register.html', {'car': car})
+    return render(request, 'automobile_register.html', {'automobile': automobile})

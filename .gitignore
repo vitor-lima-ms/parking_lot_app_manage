@@ -2,3 +2,4 @@
 /venv
 project/parking_lot/settings.py
 *.pyc
+/base_dir/venv

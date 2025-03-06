@@ -2,9 +2,9 @@ from django.db import models
 
 # Create your models here.
 
-class Car(models.Model):
+class Automobile(models.Model):
     model = models.CharField(max_length=50)
-    car_plate = models.CharField(max_length=7)
+    automobile_plate = models.CharField(max_length=7)
     checkin_date = models.DateField(auto_now_add=True)
     checkin_time = models.TimeField(auto_now_add=True)
 
@@ -12,13 +12,13 @@ class Car(models.Model):
         ordering = (('-checkin_time'),)
 
     def __str__(self):
-        return f'{self.model} {self.car_plate}'
+        return f'{self.model} {self.automobile_plate}'
 
-class CarSpace(models.Model):
+class AutomobileSpace(models.Model):
     occupied = models.BooleanField(default=False)
     occupied_by = models.OneToOneField(
-        Car,
-        related_name='car_space',
+        Automobile,
+        related_name='automobile_space',
         null=True,
         on_delete=models.SET_NULL,
     )

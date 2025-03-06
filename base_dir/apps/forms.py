@@ -1,10 +1,10 @@
 from django import forms
-from .models import Car
+from .models import Automobile
 
-class CarForm(forms.ModelForm):
+class AutomobileForm(forms.ModelForm):
     class Meta:
-        model = Car
+        model = Automobile
         fields = [
             'model',
-            'car_plate'
+            'automobile_plate'
         ]

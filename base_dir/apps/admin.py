@@ -1,19 +1,19 @@
 from django.contrib import admin
-from .models import Car, CarSpace
+from .models import Automobile, AutomobileSpace
 
 # Register your models here.
 
-@admin.register(Car)
-class CarAdmin(admin.ModelAdmin):
+@admin.register(Automobile)
+class AutomobileAdmin(admin.ModelAdmin):
     list_display = [
         'model',
-        'car_plate',
+        'automobile_plate',
         'checkin_date',
         'checkin_time',
     ]
 
-@admin.register(CarSpace)
-class CarSpaceAdmin(admin.ModelAdmin):
+@admin.register(AutomobileSpace)
+class AutomobileSpaceAdmin(admin.ModelAdmin):
     list_display = [
         'occupied',
         'occupied_by',
