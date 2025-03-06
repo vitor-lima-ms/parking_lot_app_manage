@@ -1,0 +1,10 @@
+section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+#parking_spaces {
+    padding: 20px;
+}
