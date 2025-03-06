@@ -1,0 +1,20 @@
+{% extends "base_parking.html" %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static "css/pre_finish.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <div id="parking_spaces">
+        <span>Vaga {{ parking_space.id }}</span>
+        <span>Horário de entrada: {{ checkin_datetime }}</span>
+        <span>Horário de saída: {{ current_datetime }}</span>
+        <span>{{ time_delta }}</span>
+        <span>Total: R$ {{ price }}</span>
+        <form action="{% url "apps:finish" parking_space.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Confirmar pagamento">
+        </form>
+    </div>
+{% endblock content %}
