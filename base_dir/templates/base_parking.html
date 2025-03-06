@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estacionamento do Bosque {% block title %}{% endblock title %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    {% block css %}{% endblock css %}
+</head>
+<body>
+    <header>
+        <h1>Estacionamento do Bosque</h1>
+    </header>
+    <nav>
+        <a href="{% url "apps:main_page" %}">Vagas desocupadas</a>
+        <a href="{% url "apps:autos_register_form" %}">Cadastrar veículo</a>
+        <a href="{% url "apps:occupied_parking_spaces" %}">Vagas ocupadas</a>
+        <a href="{% url "apps:parking_creation_form" %}">Cadastrar vagas</a>
+    </nav>
+    <main>
+        {% block content %}{% endblock content %}          
+    </main>
+</body>
+</html>
