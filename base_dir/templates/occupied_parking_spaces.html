@@ -1,0 +1,20 @@
+{% extends "base_parking.html" %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/occupied_parking_spaces.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <h2>Vagas ocupadas</h2>
+    <section>
+        {% for parking in occupied_parking_spaces %}
+            <div id="parking_spaces">
+                <span>Vaga {{ parking.id }}</span>
+                <span>Veículo: {{ parking.occupied_by }}</span>
+                <span>Horário de entrada: {{ parking.occupied_by.checkin_datetime }}</span>
+                <a href="{% url "apps:pre_finish" parking.id %}">Finalizar</a>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock content %}
