@@ -9,8 +9,7 @@ class AutosAdmin(admin.ModelAdmin):
         'id',
         'model',
         'autos_plate',
-        'checkin_date',
-        'checkin_time',
+        'checkin_datetime',
     ]
 
 @admin.register(ParkingSpace)
