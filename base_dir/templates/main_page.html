@@ -1,27 +1,17 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estacionamento do Bosque</title>
+{% extends "base_parking.html" %}
+
+{% block css %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-</head>
-<body>
-    <header>
-        <h1>Estacionamento do Bosque</h1>
-    </header>
-    <nav>
-        <a href="{% url "apps:parking_creation_form" %}">Cadastrar veículo</a>
-        <a href="{% url "apps:parking_creation_form" %}">Cadastrar vagas</a>
-    </nav>
-    <main>
-        <h2>Vagas disponíveis</h2>
-        <div id="parking_spaces">
-            {% for parking in all_parking_spaces %}
-                {{ parking }}
-            {% endfor %}
-        </div>        
-    </main>
-</body>
-</html>
+    <link rel="stylesheet" href="{% static "css/main_page.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <h2>Vagas disponíveis</h2>
+    <section>
+        {% for parking in unoccupied_parking_spaces %}
+            <div id="parking_spaces">
+                <span>Vaga {{ parking.id }}</span>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock content %}
