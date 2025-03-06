@@ -1,0 +1,5 @@
+#parking_spaces {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

@@ -4,6 +4,7 @@ from . import views
 app_name = 'apps'
 
 urlpatterns = [
-    path('automobile_form/', views.AutomobileFormView.as_view(), name='automobile_form'),
-    path('automobile_register/', views.automobile_register, name='automobile_register'),
+    path('parking_creation_form/', views.ParkingSpaceCreationFormView.as_view(), name='parking_creation_form'),
+    path('autos_register_form/', views.ParkingSpaceCreationFormView.as_view(), name='parking_creation_form'),
+    path('', views.main_page, name='main_page'),
 ]
