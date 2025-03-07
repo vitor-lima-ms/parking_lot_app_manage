@@ -1,0 +1,9 @@
+{% extends "base_parking.html" %}
+
+{% block content %}
+    <form action="{% url "apps:saving_driver" %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Enviar">
+    </form>
+{% endblock content %}
