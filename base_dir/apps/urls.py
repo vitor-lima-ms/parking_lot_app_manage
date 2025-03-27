@@ -23,8 +23,12 @@ urlpatterns = [
     path('occupied_parking_spaces/', views.occupied_parking_spaces, name='occupied_parking_spaces'),
 
     path('registered_drivers/', views.registered_drivers, name='registered_drivers'),
+    
+    path('driver_search/', views.driver_search, name='driver_search'),
 
     path('registered_autos/', views.registered_autos, name='registered_autos'),
+
+    path('plate_search/', views.plate_search, name='plate_search'),
 
     path('pre_finish/<int:parking_space_id>', views.pre_finish, name='pre_finish'),
 
