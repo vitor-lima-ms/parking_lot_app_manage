@@ -1,9 +1,15 @@
 {% extends "base_parking.html" %}
 
 {% block content %}
-    <form action="{% url "apps:saving_autos" %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Enviar">
-    </form>
+    {% if error %}
+        {{ error }}
+    {% else %}
+        <form action="{% url "apps:saving_autos" %}" method="post">
+            {% csrf_token %}
+            <span>Nome/CPF do motorista: {{ form.driver_doc }}</span><br>
+            <span>Modelo: {{ form.model }}</span><br>
+            <span>Placa: {{ form.autos_plate }}</span><br>
+            <input type="submit" value="Enviar">
+        </form>
+    {% endif %}
 {% endblock content %}
