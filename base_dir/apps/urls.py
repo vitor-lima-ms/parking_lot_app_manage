@@ -16,7 +16,7 @@ urlpatterns = [
 
     path('saving_autos/', views.saving_autos, name='saving_autos'),
 
-    path('parking_assignment/', views.ParkingAssignmentFormView.as_view(), name='parking_assignment'),
+    path('parking_assignment_form/', views.ParkingAssignmentFormView.as_view(), name='parking_assignment_form'),
 
     path('saving_parking_place/', views.saving_parking_place, name='saving_parking_place'),
 
