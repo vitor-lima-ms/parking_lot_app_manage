@@ -1,0 +1,19 @@
+{% extends "base_parking.html" %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/registered_drivers.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <h2>Automóveis cadastrados</h2>
+    <section>
+        {% for auto in all_registered_autos %}
+            <div id="registered_drivers">
+                <span>Motorista: {{ auto.driver }}</span>
+                <span>Modelo: {{ auto.model }}</span>
+                <span>Placa: {{ auto.autos_plate }}</span>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock content %}
