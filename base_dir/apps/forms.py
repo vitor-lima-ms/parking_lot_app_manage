@@ -19,9 +19,8 @@ class DriverRegisterForm(forms.Form):
 
 """Form to create instances of the Autos model and assign drivers"""
 class AutosRegisterForm(forms.Form):
-    driver_name = forms.ModelChoiceField(
-        Driver.objects.all(),
-        to_field_name='driver_name'
+    driver_doc = forms.ModelChoiceField(
+        Driver.objects.all()
     )
     model = forms.CharField(max_length=50)
     autos_plate = forms.CharField(max_length=7)
