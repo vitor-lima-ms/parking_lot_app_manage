@@ -1,9 +1,17 @@
 {% extends "base_parking.html" %}
 
 {% block content %}
-    <form action="{% url "apps:saving_driver" %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Enviar">
-    </form>
+    {% if error %}
+        {{ error }}
+    {% else %}
+        <form action="{% url "apps:saving_driver" %}" method="post">
+            {% csrf_token %}
+            <span>Nome: {{ form.driver_name }}</span><br>
+            <span>Mensalista: {{ form.monthly }}</span><br>
+            <span>CNH: {{ form.cnh }}</span><br>
+            <span>CPF: {{ form.cpf }}</span><br>
+            <span>Documento: {{ form.file_upload }}</span><br>
+            <input type="submit" value="Enviar">
+        </form>
+    {% endif %}    
 {% endblock content %}
