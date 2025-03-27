@@ -17,6 +17,10 @@ class DriverRegisterForm(forms.Form):
     cpf = forms.CharField(max_length=11)
     file_upload = forms.FileField(required=False)
 
+"""Form to search for drivers by name"""
+class DriverSearchForm(forms.Form):
+    name_search = forms.CharField(max_length=50)
+
 """Form to create instances of the Autos model and assign drivers"""
 class AutosRegisterForm(forms.Form):
     driver_doc = forms.ModelChoiceField(
@@ -24,6 +28,10 @@ class AutosRegisterForm(forms.Form):
     )
     model = forms.CharField(max_length=50)
     autos_plate = forms.CharField(max_length=7)
+
+"""Form to search for autos by name"""
+class AutosSearchForm(forms.Form):
+    plate_search = forms.CharField(max_length=50)
 
 """Form to assign autos to parking spaces"""
 class ParkingAssignmentForm(forms.Form):
