@@ -1,0 +1,12 @@
+section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+#driver_search {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
