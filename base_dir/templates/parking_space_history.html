@@ -1,0 +1,15 @@
+{% extends "base_parking.html" %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/main_page.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <h2>Histórico de ocupação</h2>
+    <section>
+        {% for auto in history %}
+            {{ auto }}<br>
+        {% endfor %}
+    </section>
+{% endblock content %}
