@@ -3,7 +3,9 @@
 {% block content %}
     <form action="{% url "apps:saving_parking_place" %}" method="post">
         {% csrf_token %}
-        {{ form }}
+        <span>Vaga: {{ form.parking_places }}</span><br>
+        <span>Ocupada: {{ form.occupied }}</span><br>
+        <span>Veículo: {{ form.occupied_by }}</span><br>
         <input type="submit" value="Enviar">
     </form>
 {% endblock content %}
