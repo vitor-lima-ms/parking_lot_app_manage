@@ -2,7 +2,7 @@ from django.views.generic.edit import FormView
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.db.models import Q
 from datetime import datetime, timezone
-from .forms import ParkingSpaceCreationForm, DriverRegisterForm, AutosRegisterForm, ParkingAssignmentForm
+from .forms import ParkingSpaceCreationForm, DriverRegisterForm, DriverSearchForm, AutosRegisterForm, AutosSearchForm, ParkingAssignmentForm
 from .models import Autos, ParkingSpace, Driver
 from .functions import price_calculator, cpf_validator
 
@@ -117,19 +117,41 @@ def occupied_parking_spaces(request):
 
 """Here we see all registered drivers"""
 def registered_drivers(request):
+    form = DriverSearchForm()
     all_registered_drivers = Driver.objects.all()
 
     return render(request, 'registered_drivers.html', {
+        'form': form,
         'all_registered_drivers': all_registered_drivers,
     })
 
+"""View that displays only drivers that match the search by name"""
+def driver_search(request):
+    form = DriverSearchForm(request.POST)
+
+    if form.is_valid():
+        drivers = Driver.objects.filter(driver_name__contains=form.cleaned_data['name_search'])
+
+        return render(request, 'driver_search.html', {'drivers': drivers})
+
 """Here we see all registered autos"""
 def registered_autos(request):
+    form = AutosSearchForm()
     all_registered_autos = Autos.objects.all()
 
     return render(request, 'registered_autos.html', {
+        'form': form,
         'all_registered_autos': all_registered_autos,
     })
+
+"""View that displays only autos that match the search by plate"""
+def plate_search(request):
+    form = AutosSearchForm(request.POST)
+
+    if form.is_valid():
+        auto = get_object_or_404(Autos, autos_plate=form.cleaned_data['plate_search'])
+
+        return render(request, 'plate_search.html', {'auto': auto})
 
 """In this view, we calculate the amount to be paid and see all relevant information before receiving payment and releasing the parking space"""
 def pre_finish(request, parking_space_id):
