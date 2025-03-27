@@ -1,10 +1,10 @@
 from django.views.generic.edit import FormView
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
+from django.db.models import Q
+from datetime import datetime, timezone
 from .forms import ParkingSpaceCreationForm, DriverRegisterForm, AutosRegisterForm, ParkingAssignmentForm
 from .models import Autos, ParkingSpace, Driver
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404, get_list_or_404
-from datetime import datetime, timezone
-from .functions import price_calculator
+from .functions import price_calculator, cpf_validator
 
 # Create your views here.
 
@@ -40,11 +40,17 @@ def saving_driver(request):
     form = DriverRegisterForm(request.POST)
     
     if form.is_valid():
-        try:
-            drivers = get_list_or_404(Driver, cpf=form.cleaned_data['cpf'])
-            if len(drivers) >= 1:
-                return render(request, 'driver_register_form.html', {'error': 'Motorista já cadastrado!'})
-        except:
+        drivers = Driver.objects.filter(Q(cpf=form.cleaned_data['cpf']) | Q(cnh=form.cleaned_data['cnh']))
+        print(drivers)
+
+        if len(drivers) >= 1:
+            return render(request, 'driver_register_form.html', {'register_error': 'Motorista já cadastrado!'})
+
+        print('Passou do primeiro if')
+        
+        cpf_validation = cpf_validator(form.cleaned_data['cpf'])
+
+        if cpf_validation:
             driver = Driver.objects.create(
                 driver_name=form.cleaned_data['driver_name'],
                 monthly=form.cleaned_data['monthly'],
@@ -53,8 +59,13 @@ def saving_driver(request):
                 file_upload=form.cleaned_data['file_upload']
             )
             driver.save()
-        
+    
             return redirect('apps:autos_register_form')
+        
+        return render(request, 'driver_register_form.html', {
+            'form': form,
+            'cpf_error': 'CPF inválido!'
+        })
 
 """View that allows create instances of Autos and assign drivers"""
 class AutosRegisterFormView(FormView):
@@ -76,7 +87,7 @@ def saving_autos(request):
                 autos_plate=form.cleaned_data['autos_plate'],
             )
         
-            return redirect('apps:parking_assignment')
+            return redirect('apps:parking_assignment_form')
 
 """View that allows assign autos to parking spaces"""
 class ParkingAssignmentFormView(FormView):
