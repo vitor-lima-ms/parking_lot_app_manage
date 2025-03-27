@@ -8,6 +8,13 @@
 {% block content %}
     <h2>Automóveis cadastrados</h2>
     <section>
+        <form action="{% url "apps:plate_search" %}" method="post">
+            {% csrf_token %}
+            Placa do veículo: {{ form.plate_search }}
+            <input type="submit" value="Buscar">
+        </form>
+    </section>
+    <section>
         {% for auto in all_registered_autos %}
             <div id="registered_drivers">
                 <span>Motorista: {{ auto.driver }}</span>
