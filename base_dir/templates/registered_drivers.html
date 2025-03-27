@@ -8,6 +8,13 @@
 {% block content %}
     <h2>Motoristas cadastrados</h2>
     <section>
+        <form action="{% url "apps:driver_search" %}" method="post">
+            {% csrf_token %}
+            Nome do motorista: {{ form.name_search }}
+            <input type="submit" value="Buscar">
+        </form>
+    </section>
+    <section>
         {% for driver in all_registered_drivers %}
             <div id="registered_drivers">
                 <span>Nome: {{ driver.driver_name }}</span>
