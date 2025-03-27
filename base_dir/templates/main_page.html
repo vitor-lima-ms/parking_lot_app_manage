@@ -10,7 +10,7 @@
     <section>
         {% for parking in unoccupied_parking_spaces %}
             <div id="parking_spaces">
-                <span>Vaga {{ parking.id }}</span>
+                <a href="{% url "apps:parking_space_history" parking.id %}"><span>Vaga {{ parking.id }}</span></a>
             </div>
         {% endfor %}
     </section>
