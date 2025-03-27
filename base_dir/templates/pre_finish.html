@@ -12,7 +12,7 @@
         <span>Horário de saída: {{ current_datetime }}</span>
         <span>{{ time_delta }}</span>
         <span>Total: R$ {{ price }}</span>
-        <form action="{% url "apps:finish" parking_space.id %}" method="post">
+        <form action="{% url "apps:finish" parking_space.id parking_space.occupied_by.id %}" method="post">
             {% csrf_token %}
             <input type="submit" value="Confirmar pagamento">
         </form>
