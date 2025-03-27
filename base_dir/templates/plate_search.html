@@ -1,0 +1,16 @@
+{% extends "base_parking.html" %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/plate_search.css" %}">
+{% endblock css %}
+{% block content %}
+    <h2>Resultado da busca</h2>
+    <section>
+        <div id="plate_search">
+            <span>Motorista: {{ auto.driver }}</span>
+            <span>Modelo: {{ auto.model }}</span>
+            <span>Placa: {{ auto.autos_plate }}</span>
+        </div>        
+    </section>
+{% endblock content %}
